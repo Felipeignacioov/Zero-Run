@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatización WhatsApp para Turismo | Ignacio</title>
+    <meta name="description" content="Tu negocio de cabañas o camping respondiendo 24/7 por WhatsApp. Nunca más pierdas una reserva.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquesa: #06b6d4;
+            --turquesa-dark: #0891b2;
+            --turquesa-light: #22d3ee;
+            --azul: #0ea5e9;
+            --azul-dark: #0369a1;
+            --gris-claro: #f8fafc;
+            --gris-medio: #64748b;
+            --gris-oscuro: #334155;
+            --negro: #1e293b;
+            --blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: var(--negro);
+            overflow-x: hidden;
+            background: var(--blanco);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--turquesa) 0%, var(--azul) 100%);
+            color: white;
+            padding: 120px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            margin-bottom: 48px;
+            opacity: 0.95;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--blanco);
+            color: var(--azul-dark);
+            padding: 20px 50px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            background: var(--gris-claro);
+        }
+
+        .beneficios-rapidos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .beneficio {
+            background: rgba(255,255,255,0.12);
+            padding: 32px 20px;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
+            transition: all 0.3s ease;
+        }
+
+        .beneficio:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-4px);
+        }
+
+        .beneficio h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .beneficio p {
+            font-size: 0.95rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Problemas */
+        .problemas {
+            padding: 100px 20px;
+            background: var(--gris-claro);
+        }
+
+        .problemas h2 {
+            text-align: center;
+            font-size: 2.75rem;
+            margin-bottom: 64px;
+            color: var(--negro);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .problemas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .problema-card {
+            background: var(--blanco);
+            padding: 36px;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-left: 4px solid var(--turquesa);
+            transition: all 0.3s ease;
+        }
+
+        .problema-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+        }
+
+        .problema-card h3 {
+            color: var(--azul-dark);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .problema-card p {
+            color: var(--gris-oscuro);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Soluciones */
+        .soluciones {
+            padding: 100px 20px;
+            background: var(--blanco);
+        }
+
+        .soluciones h2 {
+            text-align: center;
+            font-size: 2.75rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .soluciones-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--gris-medio);
+            margin-bottom: 64px;
+            font-weight: 400;
+        }
+
+        .soluciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solucion-card {
+            background: linear-gradient(135deg, var(--turquesa) 0%, var(--azul) 100%);
+            color: white;
+            padding: 44px 36px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.25);
+        }
+
+        .solucion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .solucion-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.35);
+        }
+
+        .solucion-icon {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+        }
+
+        .solucion-card h3 {
+            font-size: 1.45rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .solucion-card p {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            opacity: 0.95;
+        }
+
+        /* Resultados */
+        .resultados {
+            padding: 100px 20px;
+            background: var(--gris-claro);
+        }
+
+        .resultados h2 {
+            text-align: center;
+            font-size: 2.75rem;
+            margin-bottom: 64px;
+            color: var(--negro);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .resultado-card {
+            background: var(--blanco);
+            padding: 40px 32px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .resultado-card:hover {
+            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.15);
+            transform: translateY(-4px);
+            border-color: var(--turquesa);
+        }
+
+        .resultado-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+        }
+
+        .resultado-card h3 {
+            color: var(--azul-dark);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .resultado-card p {
+            color: var(--gris-oscuro);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Cómo funciona */
+        .como-funciona {
+            padding: 100px 20px;
+            background: var(--gris-claro);
+        }
+
+        .como-funciona h2 {
+            text-align: center;
+            font-size: 2.75rem;
+            margin-bottom: 80px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .pasos {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .paso {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .paso-numero {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--turquesa) 0%, var(--azul) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .paso:hover .paso-numero {
+            transform: scale(1.1);
+            box-shadow: 0 12px 28px rgba(6, 182, 212, 0.4);
+        }
+
+        .paso h3 {
+            color: var(--azul-dark);
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .paso p {
+            color: var(--gris-oscuro);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Precio */
+        .precio {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--blanco);
+        }
+
+        .precio h2 {
+            font-size: 2.75rem;
+            margin-bottom: 56px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .precio-card {
+            background: var(--blanco);
+            border: 2px solid var(--turquesa);
+            border-radius: 24px;
+            padding: 60px 48px;
+            max-width: 640px;
+            margin: 0 auto;
+            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .precio-card:hover {
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .precio-monto {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--turquesa) 0%, var(--azul) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+        }
+
+        .precio-periodo {
+            font-size: 1.25rem;
+            color: var(--gris-medio);
+            margin-bottom: 36px;
+            font-weight: 500;
+        }
+
+        .precio-comision {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%);
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(6, 182, 212, 0.15);
+        }
+
+        .precio-comision p {
+            font-size: 1.15rem;
+            color: var(--azul-dark);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .precio-comision small {
+            color: var(--gris-oscuro);
+            display: block;
+            margin-top: 12px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Realidad del día a día */
+        .testimonios {
+            padding: 100px 20px;
+            background: var(--gris-claro);
+        }
+
+        .testimonios h2 {
+            text-align: center;
+            font-size: 2.75rem;
+            margin-bottom: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .realidad-intro {
+            text-align: center;
+            font-size: 1.35rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 48px;
+            font-weight: 500;
+        }
+
+        .realidad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto 56px;
+        }
+
+        .realidad-item {
+            background: var(--blanco);
+            padding: 28px 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .realidad-item:hover {
+            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.12);
+            transform: translateX(8px);
+            border-color: var(--turquesa);
+        }
+
+        .realidad-check {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--turquesa) 0%, var(--azul) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+        }
+
+        .realidad-item p {
+            font-size: 1.15rem;
+            color: var(--gris-oscuro);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .realidad-conclusion {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: linear-gradient(135deg, var(--turquesa) 0%, var(--azul) 100%);
+            padding: 40px 48px;
+            border-radius: 20px;
+            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.25);
+        }
+
+        .realidad-conclusion p {
+            font-size: 1.3rem;
+            color: white;
+            margin: 0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* CTA Final */
+        .cta-final {
+            background: linear-gradient(135deg, var(--azul) 0%, var(--turquesa) 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-final .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-final h2 {
+            font-size: 2.75rem;
+            margin-bottom: 56px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .confianza-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            max-width: 1000px;
+            margin: 0 auto 56px;
+        }
+
+        .confianza-item {
+            background: rgba(255,255,255,0.12);
+            padding: 32px 24px;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
+            transition: all 0.3s ease;
+        }
+
+        .confianza-item:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-4px);
+        }
+
+        .confianza-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+        }
+
+        .confianza-item p {
+            font-size: 1.15rem;
+            margin: 0;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Botón flotante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: #25D366;
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+            z-index: 1000;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--negro);
+            color: white;
+            padding: 48px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        footer p:last-child {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 1.15rem;
+            }
+
+            .problemas h2,
+            .soluciones h2,
+            .como-funciona h2,
+            .precio h2,
+            .testimonios h2,
+            .cta-final h2 {
+                font-size: 2rem;
+            }
+
+            .btn-primary {
+                padding: 16px 36px;
+                font-size: 1.05rem;
+            }
+
+            .beneficios-rapidos {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .problemas,
+            .soluciones,
+            .resultados,
+            .como-funciona,
+            .precio,
+            .testimonios,
+            .cta-final {
+                padding: 60px 20px;
+            }
+
+            .problemas h2,
+            .soluciones h2,
+            .resultados h2,
+            .como-funciona h2,
+            .precio h2,
+            .testimonios h2 {
+                margin-bottom: 40px;
+            }
+
+            .precio-monto {
+                font-size: 3rem;
+            }
+
+            .precio-card {
+                padding: 40px 28px;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 1.75rem;
+            }
+
+            .testimonio {
+                padding: 32px 28px;
+            }
+
+            .solucion-card {
+                padding: 36px 28px;
+            }
+
+            .realidad-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 40px;
+            }
+
+            .realidad-item {
+                padding: 24px 24px;
+            }
+
+            .realidad-conclusion {
+                padding: 32px 28px;
+            }
+
+            .realidad-conclusion p {
+                font-size: 1.15rem;
+            }
+
+            .confianza-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 40px;
+            }
+
+            .confianza-item {
+                padding: 28px 20px;
+            }
+
+            .confianza-item p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Convierte WhatsApp en tu mejor vendedor</h1>
+            <p>Responde solo, califica clientes y vende 24/7 sin depender de ti.</p>
+            <a href="https://wa.me/56941867895?text=Hola%20Ignacio,%20quiero%20información%20sobre%20la%20automatización%20de%20WhatsApp" class="btn-primary">Quiero más información</a>
+            
+            <div class="beneficios-rapidos">
+                <div class="beneficio">
+                    <h3>⏰ Respuestas 24/7</h3>
+                    <p>Incluso cuando duermes</p>
+                </div>
+                <div class="beneficio">
+                    <h3>💰 Más reservas</h3>
+                    <p>Sin perder clientes</p>
+                </div>
+                <div class="beneficio">
+                    <h3>⚡ Ahorra tiempo</h3>
+                    <p>No más mensajes repetitivos</p>
+                </div>
+                <div class="beneficio">
+                    <h3>📊 Todo automatizado</h3>
+                    <p>Tu negocio funciona solo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problemas -->
+    <section class="problemas">
+        <div class="container">
+            <h2>¿Te suena conocido?</h2>
+            <div class="problemas-grid">
+                <div class="problema-card">
+                    <h3>😫 Respondiendo lo mismo todo el día</h3>
+                    <p>"¿Cuánto sale la cabaña?", "¿Tienen disponibilidad?", "¿Qué incluye?". Las mismas preguntas una y otra vez.</p>
+                </div>
+                <div class="problema-card">
+                    <h3>😴 Clientes te escriben y nadie responde a tiempo</h3>
+                    <p>Las consultas llegan a cualquier hora. Cuando logras contestar, ya se fueron con la competencia.</p>
+                </div>
+                <div class="problema-card">
+                    <h3>📱 Todo depende de ti</h3>
+                    <p>No puedes desconectarte ni un día porque se cae todo. Tu negocio eres tú.</p>
+                </div>
+                <div class="problema-card">
+                    <h3>⏱️ Clientes se van por la demora</h3>
+                    <p>Si no respondes rápido, la gente busca otra opción. Así de simple.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluciones -->
+    <section class="soluciones">
+        <div class="container">
+            <h2>Lo que hago por tu negocio</h2>
+            <p class="soluciones-subtitle">Hago que tu WhatsApp venda por ti</p>
+            <div class="soluciones-grid">
+                <div class="solucion-card">
+                    <div class="solucion-icon">💬</div>
+                    <h3>Chat inteligente automático</h3>
+                    <p>Responde las consultas frecuentes al instante. Precios, disponibilidad, check-in, todo.</p>
+                </div>
+                <div class="solucion-card">
+                    <div class="solucion-icon">📋</div>
+                    <h3>Gestión de clientes</h3>
+                    <p>Organiza automáticamente cada contacto, guarda conversaciones y mantén todo el historial accesible.</p>
+                </div>
+                <div class="solucion-card">
+                    <div class="solucion-icon">🎯</div>
+                    <h3>Calificación de leads</h3>
+                    <p>El sistema identifica qué clientes están listos para comprar y cuáles necesitan más seguimiento.</p>
+                </div>
+                <div class="solucion-card">
+                    <div class="solucion-icon">🔔</div>
+                    <h3>Seguimiento automático</h3>
+                    <p>Recordatorios, confirmaciones y mensajes de seguimiento se envían solos en el momento perfecto.</p>
+                </div>
+                <div class="solucion-card">
+                    <div class="solucion-icon">💵</div>
+                    <h3>Envío de precios y promociones</h3>
+                    <p>Envía tarifas actualizadas, ofertas especiales y condiciones sin que muevas un dedo.</p>
+                </div>
+                <div class="solucion-card">
+                    <div class="solucion-icon">🔗</div>
+                    <h3>Integración con n8n</h3>
+                    <p>Conecta WhatsApp con tus otras herramientas: calendarios, hojas de cálculo, CRM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section class="resultados">
+        <div class="container">
+            <h2>¿Qué ganas realmente?</h2>
+            <div class="resultados-grid">
+                <div class="resultado-card">
+                    <div class="resultado-icon">📈</div>
+                    <h3>Más ventas sin contratar a nadie</h3>
+                    <p>Tu equipo de ventas automatizado trabaja 24/7 sin sueldos ni vacaciones.</p>
+                </div>
+                <div class="resultado-card">
+                    <div class="resultado-icon">⚡</div>
+                    <h3>Clientes atendidos en menos de 10 segundos</h3>
+                    <p>Respuesta instantánea a cualquier hora. Nunca más un cliente esperando.</p>
+                </div>
+                <div class="resultado-card">
+                    <div class="resultado-icon">🎯</div>
+                    <h3>Cero consultas perdidas</h3>
+                    <p>Cada mensaje recibe respuesta. Cada oportunidad se aprovecha.</p>
+                </div>
+                <div class="resultado-card">
+                    <div class="resultado-icon">😌</div>
+                    <h3>Menos estrés y más tiempo</h3>
+                    <p>Desconéctate tranquilo sabiendo que tu negocio sigue vendiendo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="como-funciona">
+        <div class="container">
+            <h2>Cómo trabajamos juntos</h2>
+            <div class="pasos">
+                <div class="paso">
+                    <div class="paso-numero">1</div>
+                    <h3>Conversamos</h3>
+                    <p>Me cuentas cómo funciona tu negocio, qué preguntas recibes más y qué procesos quieres automatizar.</p>
+                </div>
+                <div class="paso">
+                    <div class="paso-numero">2</div>
+                    <h3>Configuración</h3>
+                    <p>Armo todo el sistema personalizado para tu negocio. Lo pruebo y lo ajusto hasta que funcione perfecto.</p>
+                </div>
+                <div class="paso">
+                    <div class="paso-numero">3</div>
+                    <h3>Listo para usar</h3>
+                    <p>Tu WhatsApp empieza a trabajar solo. Yo quedo disponible para ajustes y mejoras.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precio -->
+    <section class="precio">
+        <div class="container">
+            <h2>Inversión transparente</h2>
+            <div class="precio-card">
+                <div class="precio-monto">$150.000</div>
+                <div class="precio-periodo">mensuales</div>
+                <div class="precio-comision">
+                    <p>+ 8% de las reservas generadas por el sistema</p>
+                    <small>Solo pagas comisión por las ventas que el sistema te genera. Si el sistema vende más, yo también gano más. Estamos alineados.</small>
+                </div>
+                <a href="https://wa.me/56941867895?text=Hola%20Ignacio,%20quiero%20información%20sobre%20la%20automatización%20de%20WhatsApp" class="btn-primary">Conversemos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Realidad del día a día -->
+    <section class="testimonios">
+        <div class="container">
+            <h2>La realidad del día a día</h2>
+            <p class="realidad-intro">Si hoy te pasa que:</p>
+            <div class="realidad-grid">
+                <div class="realidad-item">
+                    <div class="realidad-check">✓</div>
+                    <p>Repites lo mismo 20 veces al día</p>
+                </div>
+                <div class="realidad-item">
+                    <div class="realidad-check">✓</div>
+                    <p>Te escriben a cualquier hora</p>
+                </div>
+                <div class="realidad-item">
+                    <div class="realidad-check">✓</div>
+                    <p>Pierdes clientes por demorar en responder</p>
+                </div>
+                <div class="realidad-item">
+                    <div class="realidad-check">✓</div>
+                    <p>El WhatsApp te quita tiempo personal</p>
+                </div>
+            </div>
+            <div class="realidad-conclusion">
+                <p>Este sistema está pensado justo para eso: que tu negocio atienda solo, sin que tú vivas esclavo del teléfono.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Sin complicaciones técnicas</h2>
+            <div class="confianza-grid">
+                <div class="confianza-item">
+                    <div class="confianza-icon">🛠️</div>
+                    <p>Yo me encargo de todo</p>
+                </div>
+                <div class="confianza-item">
+                    <div class="confianza-icon">✨</div>
+                    <p>No tienes que aprender nada nuevo</p>
+                </div>
+                <div class="confianza-item">
+                    <div class="confianza-icon">🔄</div>
+                    <p>Se adapta a tu forma actual de trabajar</p>
+                </div>
+                <div class="confianza-item">
+                    <div class="confianza-icon">🤝</div>
+                    <p>Si no te sirve, lo quitamos sin ataduras</p>
+                </div>
+            </div>
+            <a href="https://wa.me/56941867895?text=Hola%20Ignacio,%20quiero%20información%20sobre%20la%20automatización%20de%20WhatsApp" class="btn-primary">Hablemos por WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ignacio - Automatización de WhatsApp para Turismo</p>
+            <p>Ayudo a campings, cabañas y negocios de turismo a automatizar sus procesos</p>
+        </div>
+    </footer>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/56941867895?text=Hola%20Ignacio,%20quiero%20información%20sobre%20la%20automatización%20de%20WhatsApp" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+</body>
+</html>
